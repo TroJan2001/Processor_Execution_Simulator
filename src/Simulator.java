@@ -7,16 +7,19 @@ class Simulator {
     final private int NUMBER_OF_PROCESSEORS;
     final private double SIMULATION_TIME;
     final private String TASKS_FILE_PATH;
-    final private List<Processor> processors;
+    final private Queue<Processor> idleProcessors;
+    final private ArrayList<Processor> busyProcessors;
     final private Schedular scheduler;
     private BufferedReader br;
+
 
     public Simulator(int numberOfProcessors, double simulationTime, String tasksFilePath) {
         this.NUMBER_OF_PROCESSEORS = numberOfProcessors;
         this.SIMULATION_TIME = simulationTime;
         this.TASKS_FILE_PATH = tasksFilePath;
-        this.processors = new ArrayList<>();
-        this.scheduler = new Schedular(tasks, processors);
+        this.idleProcessors = new LinkedList<>();
+        this.busyProcessors = new ArrayList<>();
+        this.scheduler = new Schedular(tasks, idleProcessors, busyProcessors);
         try {
             readTasks();
         } catch (IOException e) {
@@ -26,7 +29,7 @@ class Simulator {
 
     public void simulate() {
         for (int i = 1; i <= NUMBER_OF_PROCESSEORS; i++) {
-            processors.add(new Processor("P" + i));
+            idleProcessors.add(new Processor("P" + i));
         }
         run();
     }
@@ -68,19 +71,19 @@ class Simulator {
                 }
             }
 
-
             // Schedule tasks
             scheduler.scheduleTasks();
 
             // Print processors status
-            for (Processor processor : processors) {
-                System.out.println(processor);
+            for (Processor busyProcessor : busyProcessors) {
+                System.out.println(busyProcessor);
             }
 
-            // Execute tasks on processors
-            for (Processor processor : processors) {
-                processor.executeTask();
+            for (Processor idleProcessor : idleProcessors) {
+                System.out.println(idleProcessor);
             }
+
+            scheduler.executeTasks();
 
             try {
                 Thread.sleep(Clock.getCycleTime());

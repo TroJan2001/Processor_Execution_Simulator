@@ -11,10 +11,6 @@ class Processor {
         return PID;
     }
 
-    public boolean isBusy() {
-        return currentTask != null;
-    }
-
     public void assignTask(Task task) {
         this.currentTask = task;
     }
@@ -26,18 +22,17 @@ class Processor {
         }
     }
 
-    public void executeTask() {
+    public boolean executeTask() {
         if (currentTask != null) {
             currentTask.executeOneCycle();
             if (currentTask.isComplete()) {
                 completeTask();
+                return true;
             }
         }
+        return false;
     }
 
-    public Task getCurrentTask() {
-        return currentTask;
-    }
 
     @Override
     public String toString() {
