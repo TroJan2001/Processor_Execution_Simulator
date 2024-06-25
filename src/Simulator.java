@@ -3,7 +3,7 @@ import java.util.*;
 
 class Simulator {
     final private Queue<Task> tasks = new PriorityQueue<>(new TaskComparator());
-    final private HashMap<Integer,List<Task>> cycleTasks = new HashMap<>();
+    final private HashMap<Integer, List<Task>> cycleTasks = new HashMap<>();
     final private int NUMBER_OF_PROCESSEORS;
     final private double SIMULATION_TIME;
     final private String TASKS_FILE_PATH;
@@ -38,7 +38,7 @@ class Simulator {
         int taskID = 1;
         simulatorInit();
         String line;
-        System.out.println("Scheduling " + br.readLine() + " Tasks");
+        System.out.println(Color.PINK + "Scheduling " + br.readLine() + " Tasks");
         while ((line = br.readLine()) != null) {
             String[] parts = line.split(" ");
             int creationTime = Integer.parseInt(parts[0]);
@@ -58,16 +58,17 @@ class Simulator {
     }
 
     public void run() {
-        System.out.println("Simulation started...");
+        System.out.println("Simulation started..." + Color.RESET);
         for (int cycle = 0; cycle <= SIMULATION_TIME; cycle++) {
-            System.out.println("Cycle " + cycle);
+            System.out.println(Color.CYAN + "Cycle " + cycle);
+            System.out.println("-".repeat(111) + Color.RESET);
 
             // Check and add new tasks for the current cycle
             if (cycleTasks.containsKey(cycle)) {
                 List<Task> newTasks = cycleTasks.get(cycle);
                 for (Task task : newTasks) {
                     tasks.add(task);
-                    System.out.println("Task " + task.getTASK_ID() + " created and added to the queue");
+                    System.out.println(Color.GREEN  + task.toString() + " created and added to the queue" + Color.RESET);
                 }
             }
 
@@ -91,8 +92,9 @@ class Simulator {
                 e.printStackTrace();
             }
             Clock.tick();
+            System.out.println(Color.CYAN + "-".repeat(111) + Color.RESET);
         }
 
-        System.out.println("Simulation ended.");
+        System.out.println(Color.PINK + "Simulation ended." + Color.RESET);
     }
 }

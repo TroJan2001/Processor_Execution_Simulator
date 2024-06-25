@@ -20,7 +20,7 @@ class Schedular {
                     if (idleProcessor != null) {
                         idleProcessor.assignTask(task);
                         busyProcessors.add(idleProcessor);
-                        System.out.println("Task " + task.getTASK_ID() + " assigned to " + idleProcessor.getPid());
+                        System.out.println(Color.YELLOW + "Task " + task.getTASK_ID() + " assigned to " + idleProcessor.getPid() + Color.RESET);
                     }
             }
         }
