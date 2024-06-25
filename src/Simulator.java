@@ -68,10 +68,6 @@ class Simulator {
                 }
             }
 
-            // Execute tasks on processors
-            for (Processor processor : processors) {
-                processor.executeTask();
-            }
 
             // Schedule tasks
             scheduler.scheduleTasks();
@@ -79,6 +75,11 @@ class Simulator {
             // Print processors status
             for (Processor processor : processors) {
                 System.out.println(processor);
+            }
+
+            // Execute tasks on processors
+            for (Processor processor : processors) {
+                processor.executeTask();
             }
 
             try {
