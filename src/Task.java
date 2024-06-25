@@ -27,7 +27,7 @@ public class Task {
     }
 
     public boolean isComplete() {
-        return remainingTime <= 0;
+        return remainingTime <= 1;
     }
 
     public void executeOneCycle() {
