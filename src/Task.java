@@ -38,9 +38,8 @@ public class Task {
 
     @Override
     public String toString() {
-        return "Task{" +
-                "TASK_ID='" + TASK_ID + '\'' +
-                ", creationTime=" + CREATION_TIME +
+        return "Task " + TASK_ID +
+                " {creationTime=" + CREATION_TIME +
                 ", executionTime=" + EXECUTION_TIME +
                 ", priority=" + PRIORITY +
                 ", remainingTime=" + remainingTime +

@@ -41,11 +41,17 @@ class Simulator {
         System.out.println(Color.PINK + "Scheduling " + br.readLine() + " Tasks");
         while ((line = br.readLine()) != null) {
             String[] parts = line.split(" ");
-            int creationTime = Integer.parseInt(parts[0]);
-            int executionTime = Integer.parseInt(parts[1]);
-            int priority = Integer.parseInt(parts[2]);
-            Task task = new Task("T" + taskID++, creationTime, executionTime, priority);
-            cycleTasks.computeIfAbsent(creationTime, k -> new ArrayList<>()).add(task);
+            try {
+                int creationTime = Integer.parseInt(parts[0]);
+                int executionTime = Integer.parseInt(parts[1]);
+                int priority = Integer.parseInt(parts[2]);
+                Task task = new Task("T" + taskID++, creationTime, executionTime, priority);
+                cycleTasks.computeIfAbsent(creationTime, k -> new ArrayList<>()).add(task);
+            }
+            catch (NumberFormatException e) {
+                System.out.println("Parsing error: Expecting Integer");
+                System.exit(1);
+            }
         }
     }
 
@@ -60,15 +66,15 @@ class Simulator {
     public void run() {
         System.out.println("Simulation started..." + Color.RESET);
         for (int cycle = 0; cycle <= SIMULATION_TIME; cycle++) {
-            System.out.println(Color.CYAN + "Cycle " + cycle);
-            System.out.println("-".repeat(111) + Color.RESET);
+            System.out.println(Color.CYAN + " ".repeat(57) + "Cycle " + cycle);
+            System.out.println("-".repeat(115) + Color.RESET);
 
             // Check and add new tasks for the current cycle
             if (cycleTasks.containsKey(cycle)) {
                 List<Task> newTasks = cycleTasks.get(cycle);
                 for (Task task : newTasks) {
                     tasks.add(task);
-                    System.out.println(Color.GREEN  + task.toString() + " created and added to the queue" + Color.RESET);
+                    System.out.println(Color.GREEN + task.toString() + " created and added to the queue" + Color.RESET);
                 }
             }
 
@@ -92,9 +98,8 @@ class Simulator {
                 e.printStackTrace();
             }
             Clock.tick();
-            System.out.println(Color.CYAN + "-".repeat(111) + Color.RESET);
+            System.out.println(Color.CYAN + "-".repeat(115) + Color.RESET);
         }
-
         System.out.println(Color.PINK + "Simulation ended." + Color.RESET);
     }
 }

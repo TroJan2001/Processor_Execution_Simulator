@@ -17,7 +17,7 @@ class Processor {
 
     public void completeTask() {
         if (currentTask != null) {
-            System.out.println(Color.RED + "Task " + currentTask.getTASK_ID() + " completed on Processor " + this.PID + Color.RESET);
+            System.out.println(Color.RED + currentTask.getTASK_ID() + " completed on Processor " + this.PID + Color.RESET);
             this.currentTask = null;
         }
     }
@@ -36,9 +36,8 @@ class Processor {
 
     @Override
     public String toString() {
-        return Color.PURPLE + "Processor{" +
-                "PID='" + PID + '\'' +
-                ", currentTask=" + (currentTask != null ? currentTask.getTASK_ID() : "Idle") +
+        return Color.PURPLE + PID + " {" +
+                "currentTask=" + (currentTask != null ? currentTask.getTASK_ID() : "Idle") +
                 '}' + Color.RESET;
     }
 }

@@ -6,11 +6,7 @@ class Clock {
     }
 
     public static void tick() {
-        currentCycle+=currentCycle;
-    }
-
-    public static int getCurrentCycle() {
-        return currentCycle;
+        currentCycle += currentCycle;
     }
 
     public static int getCycleTime() {
