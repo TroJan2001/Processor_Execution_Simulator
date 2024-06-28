@@ -2,7 +2,7 @@ import java.util.Comparator;
 import java.util.Random;
 
 public class TaskComparator implements Comparator<Task> {
-    private final Random random = new Random();
+    final private Random random = new Random();
 
     public int compare(Task o1, Task o2) {
         if (o1.getPRIORITY() < o2.getPRIORITY())

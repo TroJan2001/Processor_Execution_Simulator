@@ -15,13 +15,6 @@ class Processor {
         this.currentTask = task;
     }
 
-    public void completeTask() {
-        if (currentTask != null) {
-            System.out.println(Color.RED + currentTask.getTASK_ID() + " completed on Processor " + this.PID + Color.RESET);
-            this.currentTask = null;
-        }
-    }
-
     public boolean executeTask() {
         if (currentTask != null) {
             currentTask.executeOneCycle();
@@ -31,6 +24,13 @@ class Processor {
             }
         }
         return false;
+    }
+
+    private void completeTask() {
+        if (currentTask != null) {
+            System.out.println(Color.RED + currentTask.getTASK_ID() + " completed on Processor " + this.PID + Color.RESET);
+            this.currentTask = null;
+        }
     }
 
 

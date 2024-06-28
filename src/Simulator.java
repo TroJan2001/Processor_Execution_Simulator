@@ -37,7 +37,7 @@ class Simulator {
         simulate();
     }
 
-    public void readTasks() throws IOException {
+    private void readTasks() throws IOException {
         int taskID = 1;
         simulatorInit();
         String line;
@@ -57,7 +57,7 @@ class Simulator {
         }
     }
 
-    public void simulatorInit() {
+    private void simulatorInit() {
         try {
             br = new BufferedReader(new FileReader(TASKS_FILE_PATH));
         } catch (FileNotFoundException e) {
@@ -65,9 +65,9 @@ class Simulator {
         }
     }
 
-    public void simulate() {
+    private void simulate() {
         System.out.println("Simulation started..." + Color.RESET);
-        for (int cycle = 0; cycle <= SIMULATION_TIME; cycle++) {
+        for (int cycle = Clock.getCurrentCycle(); cycle <= SIMULATION_TIME; cycle++) {
             System.out.println(Color.CYAN + " ".repeat(57) + "Cycle " + cycle);
             System.out.println("-".repeat(115) + Color.RESET);
 
