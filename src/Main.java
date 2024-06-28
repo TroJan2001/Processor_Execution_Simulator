@@ -11,6 +11,6 @@ public class Main {
         String tasksFilePath = args[2];
 
         Simulator simulator = new Simulator(numberOfProcessors, totalClockCycles, tasksFilePath);
-        simulator.simulate();
+        simulator.run();
     }
 }

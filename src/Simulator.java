@@ -27,11 +27,11 @@ class Simulator {
         }
     }
 
-    public void simulate() {
+    public void run() {
         for (int i = 1; i <= NUMBER_OF_PROCESSEORS; i++) {
             idleProcessors.add(new Processor("P" + i));
         }
-        run();
+        simulate();
     }
 
     public void readTasks() throws IOException {
@@ -63,7 +63,7 @@ class Simulator {
         }
     }
 
-    public void run() {
+    public void simulate() {
         System.out.println("Simulation started..." + Color.RESET);
         for (int cycle = 0; cycle <= SIMULATION_TIME; cycle++) {
             System.out.println(Color.CYAN + " ".repeat(57) + "Cycle " + cycle);
