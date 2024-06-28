@@ -1,4 +1,7 @@
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.*;
 
 class Simulator {
@@ -47,8 +50,7 @@ class Simulator {
                 int priority = Integer.parseInt(parts[2]);
                 Task task = new Task("T" + taskID++, creationTime, executionTime, priority);
                 cycleTasks.computeIfAbsent(creationTime, k -> new ArrayList<>()).add(task);
-            }
-            catch (NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 System.out.println("Parsing error: Expecting Integer");
                 System.exit(1);
             }
