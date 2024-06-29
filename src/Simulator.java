@@ -39,25 +39,10 @@ class Simulator {
             System.out.println("-".repeat(115) + Color.RESET);
 
             // Check and add new tasks for the current cycle
-            if (cycleTasks.containsKey(cycle)) {
-                for (Task task : cycleTasks.get(cycle)) {
-                    tasks.add(task);
-                    System.out.println(Color.GREEN + task.toString() + " created and added to the queue" + Color.RESET);
-                }
-            }
-
+            addTasksForCurrentCycle(cycle);
             // Schedule tasks
             scheduler.scheduleTasks();
-
-            // Print processors status
-            for (Processor busyProcessor : busyProcessors) {
-                System.out.println(busyProcessor);
-            }
-
-            for (Processor idleProcessor : idleProcessors) {
-                System.out.println(idleProcessor);
-            }
-
+            printProcessorStatus();
             scheduler.executeTasks();
 
             try {
@@ -70,4 +55,23 @@ class Simulator {
         }
         System.out.println(Color.PINK + "Simulation ended." + Color.RESET);
     }
+
+    private void addTasksForCurrentCycle(int cycle) {
+        if (cycleTasks.containsKey(cycle)) {
+            for (Task task : cycleTasks.get(cycle)) {
+                tasks.add(task);
+                System.out.println(Color.GREEN + task.toString() + " created and added to the queue" + Color.RESET);
+            }
+        }
+    }
+
+    private void printProcessorStatus() {
+        for (Processor busyProcessor : busyProcessors) {
+            System.out.println(busyProcessor);
+        }
+        for (Processor idleProcessor : idleProcessors) {
+            System.out.println(idleProcessor);
+        }
+    }
 }
+
