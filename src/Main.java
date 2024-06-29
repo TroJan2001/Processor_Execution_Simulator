@@ -25,5 +25,6 @@ public class Main {
 
         Simulator simulator = new Simulator(numberOfProcessors, totalClockCycles, tasksFilePath);
         simulator.run();
+
     }
 }
