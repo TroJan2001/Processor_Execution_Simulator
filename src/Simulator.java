@@ -62,8 +62,7 @@ class Simulator {
 
                 lastCreationTime = creationTime; // Update last creation time
             } catch (NumberFormatException e) {
-                System.out.println("Parsing error: Expecting Integer");
-                System.exit(1);
+                throw new IllegalArgumentException("Parsing error: Expecting Integer");
             }
         }
     }
