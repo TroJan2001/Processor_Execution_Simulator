@@ -26,9 +26,7 @@ class Simulator {
     }
 
     public void run() {
-        for (int i = 1; i <= NUMBER_OF_PROCESSEORS; i++) {
-            idleProcessors.add(new Processor("P" + i));
-        }
+        initializeIdleProcessors();
         simulate();
     }
 
@@ -54,6 +52,12 @@ class Simulator {
             System.out.println(Color.CYAN + "-".repeat(115) + Color.RESET);
         }
         System.out.println(Color.PINK + "Simulation ended." + Color.RESET);
+    }
+
+    private void initializeIdleProcessors() {
+        for (int i = 1; i <= NUMBER_OF_PROCESSEORS; i++) {
+            idleProcessors.add(new Processor("P" + i));
+        }
     }
 
     private void addTasksForCurrentCycle(int cycle) {

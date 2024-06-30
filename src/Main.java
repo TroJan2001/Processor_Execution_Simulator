@@ -22,9 +22,7 @@ public class Main {
 
         // Handle this in when reading the file
         String tasksFilePath = args[2];
-
         Simulator simulator = new Simulator(numberOfProcessors, totalClockCycles, tasksFilePath);
         simulator.run();
-
     }
 }
