@@ -4,14 +4,12 @@ import java.util.*;
 class Simulator {
     final private Queue<Task> tasks = new PriorityQueue<>(new TaskComparator());
     final private HashMap<Integer, List<Task>> cycleTasks;
-    final private int NUMBER_OF_PROCESSEORS;
     final private double SIMULATION_TIME;
     final private Queue<Processor> idleProcessors;
     final private ArrayList<Processor> busyProcessors;
     final private Schedular scheduler;
 
     public Simulator(int numberOfProcessors, double simulationTime, String tasksFilePath) {
-        this.NUMBER_OF_PROCESSEORS = numberOfProcessors;
         this.SIMULATION_TIME = simulationTime;
         this.idleProcessors = new LinkedList<>();
         this.busyProcessors = new ArrayList<>();
@@ -23,10 +21,12 @@ class Simulator {
             System.out.println("IOException while reading tasks file");
             throw new RuntimeException(e);
         }
+        for (int i = 1; i <= numberOfProcessors; i++) {
+            idleProcessors.add(new Processor("P" + i));
+        }
     }
 
     public void run() {
-        initializeIdleProcessors();
         simulate();
     }
 
@@ -54,11 +54,6 @@ class Simulator {
         System.out.println(Color.PINK + "Simulation ended." + Color.RESET);
     }
 
-    private void initializeIdleProcessors() {
-        for (int i = 1; i <= NUMBER_OF_PROCESSEORS; i++) {
-            idleProcessors.add(new Processor("P" + i));
-        }
-    }
 
     private void addTasksForCurrentCycle(int cycle) {
         if (cycleTasks.containsKey(cycle)) {
