@@ -36,9 +36,7 @@ class Simulator {
             System.out.println(Color.CYAN + " ".repeat(57) + "Cycle " + cycle);
             System.out.println("-".repeat(115) + Color.RESET);
 
-            // Check and add new tasks for the current cycle
             addTasksForCurrentCycle(cycle);
-            // Schedule tasks
             scheduler.scheduleTasks();
             printProcessorStatus();
             scheduler.executeTasks();
