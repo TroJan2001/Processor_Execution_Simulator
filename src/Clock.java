@@ -1,6 +1,6 @@
 class Clock {
     final private static int CYCLE_TIME = 1000;
-    private static int currentCycle = 1;
+    private static int currentCycle = 0;
 
     private Clock() {
     }
